@@ -239,10 +239,6 @@ public unsafe class MapMarkerController : IDisposable
 
         if (Utils.GetDistance(worldPos, LastPlayerPos) > MiniMapMarkerRadius && Utils.GetDistance(worldPos with {Y = 0}, LastFlagPos) > FlagMarkerRadius)
         {
-            // TODO: Remove once KTK offset bug is fixed
-            if ((Territory)Plugin.ClientState.TerritoryType == Territory.Hydatos)
-                mapPos.Z -= 475;
-
             MapOverlayController.AddMarker(new MapMarkerInfo
             {
                 AllowAnyMap = false,
