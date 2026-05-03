@@ -42,6 +42,8 @@ public class TrackerHandler
 
         Client.DefaultRequestHeaders.Add("Authorization", $"Bearer {AnonKey}");
         Client.DefaultRequestHeaders.Add("Prefer", "return=representation");
+
+        Client.DefaultRequestHeaders.Add("User-Agent", $"Eureka Linker {Plugin.PluginInterface.Manifest.AssemblyVersion}");
     }
 
     public void Dispose()
@@ -377,6 +379,7 @@ public class TrackerHandler
         try
         {
             var content = new StringContent(JsonConvert.SerializeObject(entry), Encoding.UTF8, "application/json");
+            Plugin.Log.Debug($"Content: {content.ReadAsStringAsync().Result}");
 
             var response = await Client.PutAsync($"{BaseUrl}{entry.Table}?id=eq.{entry.Id}", content);
             Plugin.Log.Debug($"Table {entry.Table} ({response.StatusCode}) | Content: {response.Content.ReadAsStringAsync().Result}");

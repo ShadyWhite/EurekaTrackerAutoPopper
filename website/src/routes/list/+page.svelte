@@ -15,20 +15,20 @@
     let loading = $state(true);
     let error = $state(null);
     let refreshInterval = $state(null);
-    
+
     // Applied filter - this is what actually filters the API calls
     let appliedDatacenterIds = $state(new Set());
-    
+
     // Temporary selections in dialog - only applied when user clicks "Apply"
     let tempDatacenterIds = $state(new Set());
-    
+
     let table = $state(null);
     let datacenterDialog = $state(null);
-    
+
     // Store sort state to preserve it across refreshes
     let savedSortColumn = $state(null);
     let savedSortDirection = $state(null);
-    
+
     // Table column definitions
     const tableColumns = [
         { id: 'tracker_id', key: 'tracker_id', name: 'Tracker ID', sortable: false },
@@ -38,7 +38,7 @@
         { id: 'ce', key: 'active_ce_fate_id', name: 'Last/Current CE', sortable: false },
         { id: 'fate', key: 'active_fate_id', name: 'Last/Current Fate', sortable: false },
     ];
-    
+
     // Get all selectable datacenters grouped by region
     const datacentersByRegion = Object.entries(DATACENTER_NAMES)
         .filter(([id, dc]) => dc.selectable)
@@ -49,9 +49,9 @@
             regions[dc.region].push({ id: parseInt(id), name: dc.name });
             return regions;
         }, {});
-    
+
     const sortedRegions = Object.keys(datacentersByRegion).sort();
-    
+
     // Helper to get selected datacenter objects for display
     function getSelectedDatacenters() {
         return Array.from(appliedDatacenterIds)
@@ -61,30 +61,30 @@
             })
             .filter(Boolean);
     }
-    
+
     // Open dialog: copy applied selections to temp selections
     function openDatacenterDialog() {
         tempDatacenterIds = new Set(appliedDatacenterIds);
         datacenterDialog?.showModal();
     }
-    
+
     // Close dialog: discard temp selections
     function closeDatacenterDialog() {
         datacenterDialog?.close();
     }
-    
+
     // Toggle individual datacenter in dialog (temp state)
     function toggleDatacenter(dcId) {
         tempDatacenterIds = new Set(tempDatacenterIds);
         tempDatacenterIds.has(dcId) ? tempDatacenterIds.delete(dcId) : tempDatacenterIds.add(dcId);
     }
-    
+
     // Toggle entire region in dialog (temp state)
     function toggleRegion(region) {
         const regionDcs = datacentersByRegion[region] || [];
         const regionIds = new Set(regionDcs.map(dc => dc.id));
         const allSelected = regionIds.size > 0 && Array.from(regionIds).every(id => tempDatacenterIds.has(id));
-        
+
         tempDatacenterIds = new Set(tempDatacenterIds);
         if (allSelected) {
             // Deselect all in region
@@ -94,37 +94,37 @@
             regionIds.forEach(id => tempDatacenterIds.add(id));
         }
     }
-    
+
     // Check if datacenter is selected in dialog (temp state)
     function isDatacenterSelected(dcId) {
         return tempDatacenterIds.has(dcId);
     }
-    
+
     // Check if region is fully selected in dialog (temp state)
     function isRegionFullySelected(region) {
         const regionDcs = datacentersByRegion[region] || [];
         return regionDcs.length > 0 && regionDcs.every(dc => tempDatacenterIds.has(dc.id));
     }
-    
+
     // Check if region is partially selected in dialog (temp state)
     function isRegionPartiallySelected(region) {
         const regionDcs = datacentersByRegion[region] || [];
         const selectedCount = regionDcs.filter(dc => tempDatacenterIds.has(dc.id)).length;
         return selectedCount > 0 && selectedCount < regionDcs.length;
     }
-    
+
     // Apply selections: copy temp to applied, update URL, and fetch
     async function applySelections() {
         // Capture IDs before closing dialog
         const ids = Array.from(tempDatacenterIds);
         console.log('Applying filter with datacenter IDs:', ids);
-        
+
         // Copy temp selections to applied filter
         appliedDatacenterIds = new Set(ids);
-        
+
         // Close dialog
         closeDatacenterDialog();
-        
+
         // Update URL params
         const params = new URLSearchParams();
         if (ids.length > 0) {
@@ -132,11 +132,11 @@
         }
         const newUrl = $page.url.pathname + (params.toString() ? '?' + params.toString() : '');
         await goto(newUrl, { replaceState: true, noScroll: true });
-        
+
         // Fetch with new filter - pass IDs directly to avoid state timing issues
         await loadRecentTrackers(ids);
     }
-    
+
     // Initialize filters from URL params (only on mount)
     function initializeFilters() {
         const dcParam = $page.url.searchParams.get('dc');
@@ -147,7 +147,7 @@
             appliedDatacenterIds = new Set();
         }
     }
-    
+
     // Update indeterminate state for region checkboxes
     $effect(() => {
         sortedRegions.forEach(region => {
@@ -160,29 +160,30 @@
 
     async function fetchRecentTrackers(filterIds = null) {
         try {
-            const thirtyMinutesAgo = Math.floor((Date.now() - 30 * 60 * 1000) / 1000);
-            
+            // const thirtyMinutesAgo = Math.floor((Date.now() - 30 * 60 * 1000) / 1000);
+            const threeMinutesAgo = Math.floor((Date.now() - 3 * 60 * 1000) / 1000);
+
             // Use provided filterIds or fall back to applied filter
             const selectedIds = filterIds !== null ? filterIds : Array.from(appliedDatacenterIds);
             console.log('Fetching with datacenter filter:', selectedIds);
-            
+
             // Build query parameters
             const params = new URLSearchParams();
-            params.set('last_update', `gte.${thirtyMinutesAgo}`);
-            
+            params.set('last_update', `gte.${threeMinutesAgo}`);
+
             // Filter by selected datacenters if any are selected
             if (selectedIds.length > 0) {
                 params.set('datacenter', `in.(${selectedIds.join(',')})`);
             }
-            
+
             const response = await fetch(`${BASE_URL}?${params.toString()}`, {
                 headers: API_HEADERS,
             });
-            
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            
+
             const data = await response.json();
             // filter out trackers with a datacenter field set to 0
             return data.filter(tracker => tracker.datacenter !== 0);
@@ -195,20 +196,20 @@
     // Helper to process history and find active/recent entries
     function processHistory(history, historyType) {
         if (!history) return { active: null, recent: null, isActive: false };
-        
+
         try {
             const parsed = JSON.parse(history);
             parsed.forEach(item => { item.alive = isAlive(item); });
-            
+
             const active = parsed.find(item => item.alive);
             if (active) {
                 return { active: active.fate_id, recent: null, isActive: true };
             }
-            
+
             const recent = parsed
                 .filter(item => item.last_seen > 0)
                 .sort((a, b) => b.last_seen - a.last_seen)[0];
-            
+
             return { active: null, recent: recent?.fate_id || null, isActive: false };
         } catch (e) {
             console.warn(`Failed to parse ${historyType} for tracker:`, historyType);
@@ -219,7 +220,7 @@
     async function processTrackerData(data) {
         // Process the data to add last_ce information and cap timestamps
         const currentTime = Math.floor(Date.now() / 1000);
-        
+
         return data.map((tracker) => {
             // Cap the last_update timestamp to current time if it's in the future
             const cappedLastUpdate = Math.min(tracker.last_update, currentTime);
@@ -249,7 +250,7 @@
 
             // Process encounter history to get the last active CE
             const ceData = processHistory(tracker.encounter_history, 'encounter_history');
-            
+
             // Process fate history to get the last active fate
             const fateData = processHistory(tracker.fate_history, 'fate_history');
 
@@ -299,15 +300,15 @@
                 }
             }
         }
-        
+
         table = new DataTable({
             data: trackers,
             columns: tableColumns,
         });
-        
+
         // Wait for reactive update to complete
         await tick();
-        
+
         // Restore sort state after recreating
         if (savedSortColumn && savedSortDirection) {
             // Apply the sort - toggleSort cycles through: none -> asc -> desc -> none
@@ -341,7 +342,7 @@
             const data = await fetchRecentTrackers(filterIds);
             const processedData = await processTrackerData(data);
             trackers = processedData;
-            
+
             // Always recreate the table to ensure it updates properly
             await createTable();
         } catch (err) {
@@ -601,7 +602,7 @@
                 {@const regionCheckboxId = `region-${region}`}
                 {@const isFull = isRegionFullySelected(region)}
                 <div class="mb-4 last:mb-0">
-                    <label 
+                    <label
                         for={regionCheckboxId}
                         class="flex items-center gap-2 cursor-pointer hover:bg-white/10 p-1 mb-1"
                     >
@@ -617,7 +618,7 @@
                     <div class="space-y-1 pl-5">
                         {#each datacentersByRegion[region] as dc}
                             {@const dcCheckboxId = `dc-${dc.id}`}
-                            <label 
+                            <label
                                 for={dcCheckboxId}
                                 class="flex items-center gap-2 cursor-pointer hover:bg-white/10 p-0.5"
                             >
