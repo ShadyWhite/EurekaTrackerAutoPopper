@@ -46,7 +46,9 @@ public class FastSwitchOverlay : Window, IDisposable
             if (!mapBaseNode.IsVisible)
                 return;
 
-            var posY = mapBaseNode.Y - OriginalSize.Y * ImGuiHelpers.GlobalScale;
+            Size = CalculateRequiredSize(6) / ImGuiHelpers.GlobalScale;
+
+            var posY = mapBaseNode.Y - Size.Value.Y * ImGuiHelpers.GlobalScale;
             if (Plugin.Configuration.SwitcherBelowMap)
                 posY = mapBaseNode.Y + mapBaseNode.ScaledHeight;
 
@@ -80,11 +82,25 @@ public class FastSwitchOverlay : Window, IDisposable
         flagsChanged |= Helper.ImageButtonWithState(Icons.Reroll, FlagMarkerSet.OccultReroll, ref current);
         ImGui.SameLine();
         flagsChanged |= Helper.ImageButtonWithState(Plugin.PenumbraIpc.GetReplacedIcon, FlagMarkerSet.OccultBunny, ref current);
+        ImGui.SameLine();
 
         if (flagsChanged)
         {
             Plugin.MapMarkerController.RevertTempMarkerSet();
             Plugin.MapMarkerController.SetMarkerSet(current);
         }
+    }
+
+    private Vector2 CalculateRequiredSize(float numberOfButtons)
+    {
+        var style = ImGui.GetStyle();
+        var buttonSize = (Helper.IconSize * ImGuiHelpers.GlobalScale) + style.FramePadding * 2.0f;
+        var spacing = style.ItemSpacing.X * (numberOfButtons - 1);
+        var windowPadding = style.WindowPadding * 2.0f;
+
+        var width = buttonSize.X * numberOfButtons + spacing + windowPadding.X;
+        var height = buttonSize.Y + windowPadding.Y;
+
+        return new Vector2(width, height);
     }
 }
