@@ -279,7 +279,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "脳髄愛好家「マインドフレイア」",
             "de": "Die Geißel des Geistes",
         },
-        drops: [47744],
+        drops: [49831, 49826, 47744],
         encounter_id: 33,
         spawn_type: true, // monster kill - Crescent Monk
         monster: {
@@ -296,7 +296,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "黒の連隊",
             "de": "Das schwarze Regiment",
         },
-        drops: [47749, 47752, 47732],
+        drops: [49831, 49826, 47749, 47752, 47732],
         encounter_id: 34,
         spawn_type: false, // random spawn - Automatic
     },
@@ -307,7 +307,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "怒れる人造人間「クレセント・バーサーカー」",
             "de": "Zorn auf zwei Beinen",
         },
-        drops: [47744, 47751, 47730],
+        drops: [49831, 49826, 47744, 47751, 47730],
         encounter_id: 35,
         spawn_type: false, // random spawn - Automatic
     },
@@ -318,7 +318,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "忍び寄る爪「デスクロー」",
             "de": "Das messerscharfe Schicksal",
         },
-        drops: [47744],
+        drops: [49831, 49826, 47744],
         encounter_id: 36,
         spawn_type: false, // random spawn - Automatic
     },
@@ -329,7 +329,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "封印大妖「クロイスターデーモン」",
             "de": "Das versiegelte Unheil",
         },
-        drops: [47745, 47728, 48008],
+        drops: [49831, 49826, 47745, 47728, 48008],
         encounter_id: 37,
         spawn_type: true, // monster kill - Crescent Inkstain
         monster: {
@@ -346,7 +346,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "模造されしもの「水晶竜」",
             "de": "Tödliche Schönheit",
         },
-        drops: [47746],
+        drops: [49833, 49828, 47746],
         encounter_id: 38,
         spawn_type: false, // random spawn - Automatic
     },
@@ -357,7 +357,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "神秘の偶像「ミシカルアイドル」",
             "de": "Von uralten Magien",
         },
-        drops: [47746, 47729],
+        drops: [49833, 49828, 47746, 47729],
         encounter_id: 39,
         spawn_type: true, // monster kill - Crescent Byblos
         monster: {
@@ -374,7 +374,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "石造りの守護騎士たち",
             "de": "Die steinerne Staffel",
         },
-        drops: [47748],
+        drops: [49827, 49832, 47748],
         encounter_id: 40,
         spawn_type: false, // random spawn - Automatic
     },
@@ -385,7 +385,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "伝説の鮫「ニーム・ペタロドゥス」",
             "de": "Jäger aus alten Legenden",
         },
-        drops: [47747, 47731],
+        drops: [49833, 49828, 47747, 47731],
         encounter_id: 41,
         spawn_type: true, // monster kill - Crescent Petalodite
         monster: {
@@ -402,7 +402,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "二足の獅子「ランパントライオン」",
             "de": "Gefürchtetes Gebrüll",
         },
-        drops: [47748, 47757],
+        drops: [49827, 49832, 47748, 47757],
         encounter_id: 42,
         spawn_type: true, // monster kill - Crescent Fan
         monster: {
@@ -419,7 +419,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "セキュリティ・コマンドー",
             "de": "Mit absoluter Sicherheit",
         },
-        drops: [47747],
+        drops: [49833, 49828, 47747],
         encounter_id: 43,
         spawn_type: false, // random spawn - Automati
     },
@@ -430,7 +430,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "鳥嫌いの巨獣「ネオガルラ」",
             "de": "Keine Gnade dem Gefieder",
         },
-        drops:  [47749],
+        drops:  [49827, 49832, 47749],
         encounter_id: 44,
         spawn_type: true, // monster kill - Crescent Garula
         monster: {
@@ -447,7 +447,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "呪いの商亀「コイントートス」",
             "de": "Das Feilschen ums Verfluchte",
         },
-        drops: [47747, 47733],
+        drops: [49827, 49832, 47747, 47733],
         encounter_id: 45,
         spawn_type: false, // random spawn - Automatic
     },
@@ -458,7 +458,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "復元された獅子像「リペアドライオン」",
             "de": "Ausgebessert und verbessert",
         },
-        drops: [47748],
+        drops: [49827, 49832, 47748],
         encounter_id: 46,
         spawn_type: false, // random spawn - Automatic
     },
@@ -469,7 +469,7 @@ export const OCCULT_ENCOUNTERS = {
             "ja": "昏き篝火「ヒンキーパンク」",
             "de": "Das finsterste Feuer",
         },
-        drops: [47746],
+        drops: [49833, 49828, 47746],
         encounter_id: 47,
         spawn_type: false, // random spawn - Automatic
     },

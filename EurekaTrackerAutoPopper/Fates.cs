@@ -176,21 +176,21 @@ public class Fates
 
     public readonly List<Fate> OccultCriticalEncounters =
     [
-        new(33, 63909, Territory.SouthHorn, new Vector3(299.92032f, 70f, 729.9832f), [47744], OccultAetheryte.Eldergrowth, 30), // Scourge of the Mind
-        new(34, 63911, Territory.SouthHorn, new Vector3(450.28986f, 65f, 356.46573f), [47749, 47752, 47732], OccultAetheryte.Eldergrowth, 10), // The Black Regiment
-        new(35, 63909, Territory.SouthHorn, new Vector3(620.17365f, 79f, 800.0485f), [47744, 47751, 47730], OccultAetheryte.Eldergrowth, 48), // The Unbridled
-        new(36, 63909, Territory.SouthHorn, new Vector3(680.90576f, 74f, 534.0728f), [47744], OccultAetheryte.Eldergrowth, 33), // Crawling Death
-        new(37, 63909, Territory.SouthHorn, new Vector3(-340.11813f, 75f, 800.0618f), [47745, 47728, 48008], OccultAetheryte.Stonemarsh, 33), // Calamity Bound
-        new(38, 63909, Territory.SouthHorn, new Vector3(-413.43665f, 92f, 74.68839f), [47746], OccultAetheryte.CrystallizedCaverns, 17), // Trial by Claw
-        new(39, 63909, Territory.SouthHorn, new Vector3(-799.84845f, 43.99998f, 245.20094f), [47746, 47729], OccultAetheryte.Stonemarsh, 37), // From Times Bygone
-        new(40, 63911, Territory.SouthHorn, new Vector3(676.5143f, 96.03f, -254.43198f), [47748], OccultAetheryte.ExpeditionBaseCamp, 36), // Company of Stone
-        new(41, 63909, Territory.SouthHorn, new Vector3(-117.018456f, 1f, -850.34644f), [47747, 47731], OccultAetheryte.TheWanderersHaven, 17), // Shark Attack
-        new(42, 63909, Territory.SouthHorn, new Vector3(629.3389f, 108f, -52.77268f), [47748, 47757], OccultAetheryte.Eldergrowth, 42), // On the Hunt
-        new(43, 63909, Territory.SouthHorn, new Vector3(-353.2408f, 5f, -606.3008f), [47747], OccultAetheryte.TheWanderersHaven, 12), // With Extreme Prejudice
-        new(44, 63909, Territory.SouthHorn, new Vector3(457.3497f, 97f, -357.9041f), [47749], OccultAetheryte.ExpeditionBaseCamp, 36), // Noise Complaint
-        new(45, 63909, Territory.SouthHorn, new Vector3(72.06891f, 20f, -549.957f), [47747, 47733], OccultAetheryte.TheWanderersHaven, 17), // Cursed Concern
-        new(46, 63909, Territory.SouthHorn, new Vector3(870.55774f, 122f, 180.04774f), [47748], OccultAetheryte.Eldergrowth, 57), // Eternal Watch
-        new(47, 63909, Territory.SouthHorn, new Vector3(-569.202f, 97f, -158.79793f), [47746], OccultAetheryte.CrystallizedCaverns, 14), // Flame of Dusk
+        new(33, 63909, Territory.SouthHorn, new Vector3(299.92032f, 70f, 729.9832f), [49831, 49826, 47744], OccultAetheryte.Eldergrowth, 30), // Scourge of the Mind
+        new(34, 63911, Territory.SouthHorn, new Vector3(450.28986f, 65f, 356.46573f), [49831, 49826, 47749, 47752, 47732], OccultAetheryte.Eldergrowth, 10), // The Black Regiment
+        new(35, 63909, Territory.SouthHorn, new Vector3(620.17365f, 79f, 800.0485f), [49831, 49826, 47744, 47751, 47730], OccultAetheryte.Eldergrowth, 48), // The Unbridled
+        new(36, 63909, Territory.SouthHorn, new Vector3(680.90576f, 74f, 534.0728f), [49831, 49826, 47744], OccultAetheryte.Eldergrowth, 33), // Crawling Death
+        new(37, 63909, Territory.SouthHorn, new Vector3(-340.11813f, 75f, 800.0618f), [49831, 49826, 47745, 47728, 48008], OccultAetheryte.Stonemarsh, 33), // Calamity Bound
+        new(38, 63909, Territory.SouthHorn, new Vector3(-413.43665f, 92f, 74.68839f), [49833, 49828, 47746], OccultAetheryte.CrystallizedCaverns, 17), // Trial by Claw
+        new(39, 63909, Territory.SouthHorn, new Vector3(-799.84845f, 43.99998f, 245.20094f), [49833, 49828, 47746, 47729], OccultAetheryte.Stonemarsh, 37), // From Times Bygone
+        new(40, 63911, Territory.SouthHorn, new Vector3(676.5143f, 96.03f, -254.43198f), [49827, 49832, 47748], OccultAetheryte.ExpeditionBaseCamp, 36), // Company of Stone
+        new(41, 63909, Territory.SouthHorn, new Vector3(-117.018456f, 1f, -850.34644f), [49833, 49828, 47747, 47731], OccultAetheryte.TheWanderersHaven, 17), // Shark Attack
+        new(42, 63909, Territory.SouthHorn, new Vector3(629.3389f, 108f, -52.77268f), [49827, 49832, 47748, 47757], OccultAetheryte.Eldergrowth, 42), // On the Hunt
+        new(43, 63909, Territory.SouthHorn, new Vector3(-353.2408f, 5f, -606.3008f), [49833, 49828, 47747], OccultAetheryte.TheWanderersHaven, 12), // With Extreme Prejudice
+        new(44, 63909, Territory.SouthHorn, new Vector3(457.3497f, 97f, -357.9041f), [49827, 49832, 47749], OccultAetheryte.ExpeditionBaseCamp, 36), // Noise Complaint
+        new(45, 63909, Territory.SouthHorn, new Vector3(72.06891f, 20f, -549.957f), [49827, 49832, 47747, 47733], OccultAetheryte.TheWanderersHaven, 17), // Cursed Concern
+        new(46, 63909, Territory.SouthHorn, new Vector3(870.55774f, 122f, 180.04774f), [49827, 49832, 47748], OccultAetheryte.Eldergrowth, 57), // Eternal Watch
+        new(47, 63909, Territory.SouthHorn, new Vector3(-569.202f, 97f, -158.79793f), [49833, 49828, 47746], OccultAetheryte.CrystallizedCaverns, 14), // Flame of Dusk
 
         new(48, 63978, Territory.SouthHorn, new Vector3(63.066174f, 126.499985f, 3.8296576f), [47868, 47734, 47735, 47736, 47737], OccultAetheryte.Eldergrowth, 25) // The Forked Tower: Blood
     ];

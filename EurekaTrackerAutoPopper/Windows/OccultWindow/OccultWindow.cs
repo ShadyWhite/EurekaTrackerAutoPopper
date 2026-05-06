@@ -342,8 +342,8 @@ public class OccultWindow : Window, IDisposable
         ImGui.Image(iconTexture.Handle, iconTexture.Size * ImGuiHelpers.GlobalScale);
         var afterPos = ImGui.GetCursorPos();
 
-        var lineHeightWithSpacing = ImGui.GetTextLineHeightWithSpacing();
         var widthOffset = pos.X + iconTexture.Width * ImGuiHelpers.GlobalScale + 5.0f * ImGuiHelpers.GlobalScale;
+        var lineHeightWithSpacing = ImGui.GetTextLineHeightWithSpacing();
         var heightOffset = pos.Y + iconTexture.Height * ImGuiHelpers.GlobalScale - lineHeightWithSpacing * 3;
 
         DrawOffsetText(new Vector2(widthOffset, heightOffset), ImGuiColors.DalamudWhite, fate.Name);
@@ -405,10 +405,8 @@ public class OccultWindow : Window, IDisposable
             DrawOffsetText(new Vector2(widthOffset, heightOffset), ImGuiColors.HealerGreen, text);
         }
 
-        ImGui.SetCursorPos(afterPos);
-
-        ImGui.TableNextColumn();
-        var lineHeight = ImGui.GetTextLineHeight();
+        heightOffset += lineHeightWithSpacing;
+        ImGui.SetCursorPos(new Vector2(widthOffset, heightOffset));
         foreach (var (itemId, idx) in fate.SpecialRewards.Select((val, i) => (val, i)))
         {
             var item = Sheets.GetItem(itemId);
@@ -416,14 +414,19 @@ public class OccultWindow : Window, IDisposable
             if (itemIcon == null)
                 continue;
 
-            ImGui.Image(itemIcon.Handle, new Vector2(lineHeight, lineHeight));
+            ImGui.Image(itemIcon.Handle, ImGuiHelpers.ScaledVector2(24, 24));
             if (ImGui.IsItemHovered())
-                Helper.Tooltip(item.Name.ExtractText());
+                Helper.Tooltip(item.Name.ToString());
 
             if (idx + 1 !=  fate.SpecialRewards.Length)
                 ImGui.SameLine();
         }
 
+        ImGui.SetCursorPos(afterPos);
+
+        ImGui.TableNextColumn();
+
+        ImGui.Text("");
         Helper.TextColored(ImGuiColors.HealerGreen, fate.Aetheryte.ToName());
         Helper.TextColored(ImGuiColors.HealerGreen, Language.FateInfoWalkingTime.Format(Utils.TimeToClockFormat(TimeSpan.FromSeconds(fate.WalkingDistance))));
     }
