@@ -721,6 +721,62 @@ export const ITEM = {
         },
         img: "ui/icon/026000/026681.tex"
     },
+
+    // Accessories
+    49826: {
+        name: {
+            "en": "Occult Earrings of Blood",
+            "fr": "Boucles d'oreilles de combattant magi de Lunule",
+            "ja": "クレセントマギ・ファイターイヤリング",
+            "de": "Kreszentia-Ohrringe des Kriegers"
+        },
+        img: "ui/icon/055000/055562_hr1.tex"
+    },
+    49827: {
+        name: {
+            "en": "Occult Necklace of Blood",
+            "fr": "Collier de combattant magi de Lunule",
+            "ja": "クレセントマギ・ファイターネックレス",
+            "de": "Kreszentia-Halsband des Kriegers"
+        },
+        img: "ui/icon/055000/055107_hr1.tex"
+    },
+    49828: {
+        name: {
+            "en": "Occult Bracelet of Blood",
+            "fr": "Bracelet de combattant magi de Lunule",
+            "ja": "クレセントマギ・ファイターブレスレット",
+            "de": "Kreszentia-Armband des Kriegers"
+        },
+        img: "ui/icon/055000/055905_hr1.tex"
+    },
+    49831: {
+        name: {
+            "en": "Occult Bracelet of Magic",
+            "fr": "Boucles d'oreilles de mage magi de Lunule",
+            "ja": "クレセントマギ・ソーサラーイヤリング",
+            "de": "Kreszentia-Ohrringe des Magiers"
+        },
+        img: "ui/icon/055000/055562_hr1.tex"
+    },
+    49832: {
+        name: {
+            "en": "Occult Bracelet of Magic",
+            "fr": "Collier de mage magi de Lunule",
+            "ja": "クレセントマギ・ソーサラーネックレス",
+            "de": "Kreszentia-Halsband des Magiers"
+        },
+        img: "ui/icon/055000/055107_hr1.tex"
+    },
+    49833: {
+        name: {
+            "en": "Occult Bracelet of Magic",
+            "fr": "Bracelet de mage magi de Lunule",
+            "ja": "クレセントマギ・ソーサラーブレスレット",
+            "de": "Kreszentia-Armband des Magiers"
+        },
+        img: "ui/icon/055000/055905_hr1.tex"
+    },
 }
 
 export const SAMPLE_SOUTH_HORN_TRACKER = {
